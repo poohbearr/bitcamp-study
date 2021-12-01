@@ -21,8 +21,22 @@ public class Exam4 {
 
   @GetMapping("/test2")
   public String test2() {
-    double value = 987.654321;
+    double value = 987654321.1234567;
     return "부동소수점: " + value;
+  }
+
+  @GetMapping("/test3")
+  public String test3() {
+    float value = 987.654321f; // 4바이트 메모리 사용. 유효자릿수를 넘어가는 값을 잘린다.
+    return "부동소수점: " + value;
+
+  }
+
+  @GetMapping("/test4")
+  public String test4() {
+    double value = 987654321.12345678987654;
+    return "부동소수점: " + value;
+
 
   }
 
