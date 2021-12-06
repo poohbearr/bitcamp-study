@@ -1,27 +1,28 @@
 package com.eomcs.lang.ex04;
 
-//# 형변환 - 정수 변수 ==> 부동소수점 변수
-//
-public class Exam0920 {
+//# 값 저장과 메모리 크기 - 정수는 부동소수점 메모리에 저장할 수 있다.
+// 주의!
+// 부동소수점 메모리의 유효자릿수를 넘어가는 정수를 저장할 경우 값이 짤린다.
+// 그럼에도 불구하고 컴파일 오류가 발생하지 않는다.
+
+public class Exam0911 {
   public static void main(String[] args) {
-    byte b = 100;
-    short s = 100;
-    int i = 98765678;
-    long l = 98765678;
-    char c = 100;
+    byte b = 100; // 1byte
+
+    short s = 32767; // 2byte(-32768 ~ 32767)
+
+    int i = 98765678; // 4byte(약 -21억 ~ +21억) 
+
+    long l = 18_2345_3456_4567_5678L; // 8byte
 
     float f;
     double d;
 
-    // 정수 변수의 값을 부동소수점 변수에 저장할 때 값이 짤릴 수 있다.
-    //
+
     f = b; // byte(1) ==> float(4). 값을 그대로 저장.
     System.out.println(f);
 
     f = s; // short(2) ==> float(4). 값을 그대로 저장. 
-    System.out.println(f);
-
-    f = c; // char(2) ==> float(4). 값을 그대로 저장.
     System.out.println(f);
 
     f = i; // int(4) ==> float(4). 
