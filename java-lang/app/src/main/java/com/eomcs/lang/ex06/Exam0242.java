@@ -24,18 +24,18 @@ public class Exam0242 {
     // => enum 변수에는 그 타입에 정의된 값만 저장할 수 있다.
     // => 안전한 코드를 작성할 수 있다.
     //
-    Level level = Level.MEMBER;
+    Level level = Level.ADMIN;
 
     // 다음과 같이 switch나 case 값으로 enum 타입의 값이 올 수 있다.
-    switch (level) {
+    switch(level) {
       case GUEST:
-        System.out.println("조회만 가능합니다.");
+        System.out.println("조회만 가능");
         break;
       case MEMBER:
-        System.out.println("글작성 가능합니다.");
+        System.out.println("글 작성 가능");
         break;
       case ADMIN:
-        System.out.println("다른 회원의 글을 변경, 삭제할 수 있습니다.");
+        System.out.println("다른 회원의 글을 변경, 삭제 가능");
         break;
     }
   }

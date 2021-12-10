@@ -4,32 +4,21 @@ package com.eomcs.lang.ex99;
 //
 public class Exam0260 {
   public static void main(String[] args) { 
-    java.util.Scanner keyboardScanner = new java.util.Scanner(System.in);
+    java.util.Scanner keyScan = new java.util.Scanner(System.in);
+
 
     // next()
     // - 토큰 단위로 입력 데이터를 잘라서 읽을 때 유용하다. 
     System.out.print("입력: ");
-    String token1 = keyboardScanner.next();
-    String token2 = keyboardScanner.next();
-    String token3 = keyboardScanner.next();
+    String token1 = keyScan.next();
+    String token2 = keyScan.next();
+    String token3 = keyScan.next();
 
-    keyboardScanner.close();
+    keyScan.close();
 
-    System.out.printf("%s, %s, %s\n", token1, token2, token3);
+    System.out.printf("%s , %s , %s ",token1, token2, token3);
+
+
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

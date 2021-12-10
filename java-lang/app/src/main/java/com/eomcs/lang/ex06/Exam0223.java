@@ -4,7 +4,7 @@ package com.eomcs.lang.ex06;
 //
 public class Exam0223 {
   public static void main(String[] args) {
-    int score = 80;
+    int score = 60;
     // break 문을 쓰지 않으면 계속 이어서 실행된다.
     // => 일부러 쓰지 않을 때가 있다.
     switch (score) {
@@ -18,6 +18,7 @@ public class Exam0223 {
         break;
       case 60:
       case 50:
+        System.out.println("c");
       case 40:
         System.out.println("C");
         break;
