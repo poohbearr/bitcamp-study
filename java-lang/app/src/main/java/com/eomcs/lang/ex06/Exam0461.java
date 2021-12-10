@@ -8,14 +8,14 @@ public class Exam0461 {
   public static void main(String[] args) {
     ArrayList list = new ArrayList();
     list.add("홍길동");
-    list.add(3.14f);
-    list.add(true);
+    list.add(31.4f);
+    list.add(false);
     list.add(365);
 
     // for 문에 컬렉션도 적용할 수 있다.
     // for (변수 선언 : 컬렉션객체) 문장;
-    for (Object val : list)
-      System.out.println(val);
+    for (Object value : list) 
+      System.out.println(value);
   }
 }
 

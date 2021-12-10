@@ -14,11 +14,12 @@ public class Exam0460 {
     ArrayList list = new ArrayList();
     list.add("홍길동");
     list.add(3.14f);
-    list.add(true);
+    list.add(false);
     list.add(365);
 
-    for (int i = 0; i < list.size(); i++)
+    for (int i = 0; i < list.size(); i++) {
       System.out.println(list.get(i));
+    }
   }
 }
 
