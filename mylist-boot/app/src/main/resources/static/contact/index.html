@@ -27,19 +27,18 @@
     var tbody = document.querySelector("#x-contact-tbl tbody")
 
     fetch("/contact/list")
-    .then(function(response){
+    .then(function(response) {
       return response.json();
     })
-    .then(function(contacts){
-      for(arr of contacts) {
-        console.log(arr)
-
-        var contact = arr.split(",")
+    .then(function(arr) {
+      for (str of arr) {
         var tr = document.createElement("tr")
-        tr.innerHTML = `<td><a href="view.html?email=${contact[1]}"> ${contact[0]} </a></td>
-          <td> ${contact[1]} </td>
-          <td> ${contact[2]} </td>
-          <td> ${contact[3]} </td>`
+        var contact = str.split(",")
+        
+        tr.innerHTML = `<td><a href="view.html?email=${contact[1]}">${contact[0]}</td>
+        <td>${contact[1]}</td>
+        <td>${contact[2]}</td>
+        <td>${contact[3]}</td>`
         tbody.appendChild(tr)
       }
     })
