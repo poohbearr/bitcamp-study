@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>회원정보</title>
+  </head>
+  <body>
+    <h1>회원정보</h1>
+    <a href="form.html">새 회원정보</a>
+    <table id="x-table" border="1">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>주민등록번호</th>
+          <th>나이</th>
+          <th>이메일</th>
+          <th>주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+    <script type="text/javascript">
+      var id = [
+      "홍길동, 930315-1234567, 29, h@naver.com, 서울",
+      "바보, 930315-1234567, 29, h@naver.com, 서울",
+      "멍청이, 930315-1234567, 29, h@naver.com, 서울",
+      "임꺽정, 930315-1234567, 29, h@naver.com, 서울"
+      ];
+
+      var tbody = document.querySelector("#x-table tbody");
+
+        fetch("/my1/list")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(arr) {
+          console.log(arr);
+
+          for (item of arr) {
+
+            var value = item.split(",");
+            var tr = document.createElement("tr");
+            tr.innerHTML = `<td><a href="view.html?idNum=${value[1]}">${value[0]}</a></td>
+            <td>${value[1]}</td>
+            <td>${value[2]}</td>
+            <td>${value[3]}</td>
+            <td>${value[4]}</td>`;
+            tbody.appendChild(tr);
+
+        }
+
+      })
+    </script>
+  </body>
+</html>

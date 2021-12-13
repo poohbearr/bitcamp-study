@@ -2,49 +2,46 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>연락처</title>
+    <title></title>
   </head>
   <body>
+    <h1>연락처</h1>
+    <a href="form.html">새 연락처</a>
+    <table id="x-contact-Table" border="1">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>전화</th>
+          <th>회사</th>
+        </tr>
+      </thead>
+      <tbody>
 
-  <h1>연락처</h1>
-  <a href="form.html">새 연락처</a>
-  <table id="x-contact-tbl" border="1">
-    <thead>
-      <tr>
-        <th>이름</th>
-        <th>이메일</th>
-        <th>전화</th>
-        <th>회사</th>
-      </tr>
-    </thead>
-    <tbody>
+      </tbody>
+    </table>
 
-    </tbody>
-  </table>
+<script type="text/javascript">
+  var tbody = document.querySelector("#x-contact-Table tbody")
 
-  <script type="text/javascript">
+  fetch("/contact/list")
+  .then(function(response) {
+    return response.json()
+  })
+  .then(function(contacts) {
+    console.log(contacts);
+    for (var contact of contacts) {
+      var values = contact.split(",")
+      var tr = document.createElement("tr")
+      tr.innerHTML = `<td><a href="/contact/view.html?email=${values[1]}">${values[0]}</td>
+      <td>${values[1]}</td>
+      <td>${values[2]}</td>
+      <td>${values[3]}</td>`
+      tbody.appendChild(tr)
+      console.log(tr)
+  }
 
-    var tbody = document.querySelector("#x-contact-tbl tbody")
-
-    fetch("/contact/list")
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(arr) {
-      for (str of arr) {
-        var tr = document.createElement("tr")
-        var contact = str.split(",")
-        
-        tr.innerHTML = `<td><a href="view.html?email=${contact[1]}">${contact[0]}</td>
-        <td>${contact[1]}</td>
-        <td>${contact[2]}</td>
-        <td>${contact[3]}</td>`
-        tbody.appendChild(tr)
-      }
-    })
-
-
-  </script>
-
+})
+</script>
   </body>
 </html>
