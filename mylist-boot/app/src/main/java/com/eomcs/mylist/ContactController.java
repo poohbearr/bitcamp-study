@@ -54,7 +54,7 @@ public class ContactController{
       if (contacts[i].split(",")[1].equals(email)) {
 
         for (int j = i + 1; j < size; j++) {
-          contacts[j - 1] = contacts[i];
+          contacts[j - 1] = contacts[j];
         }
         size--;
         return 1;

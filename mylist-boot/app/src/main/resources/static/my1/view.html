@@ -8,13 +8,14 @@
     <h1>새 회원정보</h1>
     <form>
       *이름:<input id="x-name" type="text"><br>
-      *주민번호:<input id="x-idNum" type="text"><br>
+      *주민번호:<input id="x-idNum" type="text" readonly><br>
       나이:<input id="x-age" type="text"><br>
       주소:<input id="x-address" type="text"><br>
       *이메일:<input id="x-email" type="text"><br>
       *(별표)는 필수 입력 항목입니다.<br>
       <button id="x-update-btn" type="button">변경</button>
       <button id="x-cancel-btn" type="button">취소</button>
+      <button id="x-delete-btn" type="button">삭제</button>
     </form>
   </body>
 
@@ -31,14 +32,10 @@
     var qs = arr[1];
     console.log('qs: ' + qs);
 
-    var IDnum = null;
-    var searchIDnum = qs.split("&");
-    for (var value of searchIDnum) {
-    if (value.startsWith("idNum=")) {
-        IDnum = value.split("=")[1];
-        break;
-      }
-    }
+    var params = new URLSearchParams(qs);
+    var IDnum = params.get("idNum");
+
+    
     console.log(IDnum);
 
     if (IDnum == null) {
@@ -72,7 +69,7 @@
         return;
       }
 
-      fetch(`/my1/add?name=${xName.value}&idNum=${xIdNum.value}&age=${xAge.value}&address=${xAddress.value}&email=${xEmail.value}`)
+      fetch(`/my1/update?name=${xName.value}&idNum=${xIdNum.value}&age=${xAge.value}&address=${xAddress.value}&email=${xEmail.value}`)
       .then(function(response) {
         return response.text();
       })
@@ -85,6 +82,17 @@
     document.querySelector("#x-cancel-btn").onclick = function() {
       window.location.href = "index.html";
     }
+
+    document.querySelector("#x-delete-btn").onclick = function() {
+    fetch(`/my1/delete?idNum=${IDnum}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(result) {
+        console.log(result);
+        location.href = "index.html";
+      })
+  }
   </script>
 
 </html>
