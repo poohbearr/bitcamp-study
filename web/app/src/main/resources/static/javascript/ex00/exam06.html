@@ -24,11 +24,13 @@ tag1.onclick = function() {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "/javascript/ex00/exam06", false);
   xhr.send();
+  console.log(xhr.responseText);
 
   // 서버가 보낸 데이터를 div 태그에 넣기
   var tag2 = document.getElementById("d1");
   tag2.innerHTML = xhr.responseText;
 };
+
 
 </script>
 </body>

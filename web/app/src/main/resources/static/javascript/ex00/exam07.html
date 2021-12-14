@@ -32,6 +32,8 @@ tag1.onclick = function() {
 
   // 서버에서 보낸 JSON 형식의 데이터를 자바스크립트 객체로 변환한다.
   var names = JSON.parse(xhr.responseText);
+  console.log(xhr.responseText);
+  console.log(names);
 
   // 서버가 보낸 데이터를 가지고 <li></li> 태그로 만들어 <ul></ul> 태그에 넣기
   var ul = document.getElementById("x-name-list");

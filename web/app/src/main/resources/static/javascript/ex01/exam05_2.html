@@ -15,6 +15,7 @@
 var xhr = new XMLHttpRequest();
 xhr.onload = function() {
   document.getElementById("bill").innerHTML = xhr.responseText;
+  
 };
 xhr.open("GET", "/javascript/ex01/exam05_x", true);
 xhr.send();
