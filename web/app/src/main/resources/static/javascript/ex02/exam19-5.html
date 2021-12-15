@@ -46,6 +46,18 @@ for (var [key, value] of obj2) {
     console.log(key, "=", value);
 }
 
+var obj3 = new Map();
+obj3.set("name", "김두한");
+obj3.set("age", 30);
+obj3.set("tel", "3333-3333");
+obj3.set("working", false);
+
+console.log("-----------------")
+
+for ([key, value] of obj3) {
+  console.log(key + " = " + value);
+}
+
 
 </script>
 </body>

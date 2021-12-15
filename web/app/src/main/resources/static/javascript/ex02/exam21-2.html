@@ -29,6 +29,16 @@ v2.age = 20;
 v2.tel = "1111-2222";
 console.log(v2);
 
+var obj3 = new Map();
+obj3.set("name", "aaa");
+obj3.set("age", 20);
+obj3.set("working", true);
+for (var i of obj3) {
+  console.log(i);
+}
+
+
+
 // const 변수의 값은 변경할 수 없다.
 v2 = new Object(); // 예외 발생!
 
@@ -37,18 +47,3 @@ v2 = new Object(); // 예외 발생!
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
