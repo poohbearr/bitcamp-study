@@ -23,7 +23,7 @@ function createinterestCalculator(type) {
     }
 }
 
-// interestCalculator() 함수가 리턴하는 것은 내부에서 정의한 함수의 주소이다.
+// createinterestCalculator() 함수가 리턴하는 것은 내부에서 정의한 함수의 주소이다.
 // => 이렇게 함수 안에서 정의한 함수를 '클로저(closure)'라 부른다.
 var fn = createinterestCalculator("정기예금");
 
