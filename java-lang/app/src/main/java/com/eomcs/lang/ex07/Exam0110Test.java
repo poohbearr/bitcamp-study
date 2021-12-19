@@ -6,7 +6,19 @@ import java.util.Scanner;
 //
 public class Exam0110Test {
 
-  static void 
+  static void printSpaces(int len) {
+    for (int i = 0; i < len; i++) {
+      System.out.print(" ");
+    }
+  }
+  static void printStars(int len) {
+    for (int i = 0; i < len; i++) {
+      System.out.print("*");
+    }
+  }
+  static int getSpaceLength(int totalStar, int displayStar) {
+    return (totalStar - displayStar) / 2;
+  }
 
 
   public static void main(String[] args) {
@@ -15,26 +27,13 @@ public class Exam0110Test {
     int len = keyScan.nextInt();
     keyScan.close();
 
-    int starLen = 1;
-    while (starLen <= len) {
+    for (int starLen = 1; starLen <= len; starLen += 2) {
       // 별 앞에 공백 출력
-      int spaceCnt = 1;
-      int spaceLen = (len - starLen) / 2;
-      while (spaceCnt <= spaceLen) {
-        System.out.print(" ");
-        spaceCnt++;
-      }
-
+      printSpaces(getSpaceLength(len, starLen));
       // 별 출력
-      int starCnt = 1;
-      while (starCnt <= starLen) {
-        System.out.print("*");
-        starCnt++;
-      }
-
+      printStars(starLen);
       // 출력 줄 바꾸기
       System.out.println();
-      starLen += 2;
     }
   }
 }
