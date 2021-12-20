@@ -11,15 +11,16 @@ public class Exam0110Test {
       System.out.print(" ");
     }
   }
+
   static void printStars(int len) {
     for (int i = 0; i < len; i++) {
       System.out.print("*");
     }
   }
-  static int getSpaceLength(int totalStar, int displayStar) {
-    return (totalStar - displayStar) / 2;
-  }
 
+  static int getSpaceLength(int len, int starLen) {
+    return (len - starLen) / 2;
+  }
 
   public static void main(String[] args) {
     Scanner keyScan = new Scanner(System.in);
@@ -28,11 +29,10 @@ public class Exam0110Test {
     keyScan.close();
 
     for (int starLen = 1; starLen <= len; starLen += 2) {
-      // 별 앞에 공백 출력
       printSpaces(getSpaceLength(len, starLen));
-      // 별 출력
+
       printStars(starLen);
-      // 출력 줄 바꾸기
+
       System.out.println();
     }
   }

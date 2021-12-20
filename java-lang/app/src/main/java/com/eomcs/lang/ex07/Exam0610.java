@@ -21,6 +21,10 @@ public class Exam0610 {
     System.out.println(value1);
     System.out.println(value2);
     System.out.println(value3);
+
+    System.out.println(System.getProperty("e"));
+    System.out.println(System.getProperty("f"));
+    System.out.println(System.getProperty("g"));
   }
 }
 

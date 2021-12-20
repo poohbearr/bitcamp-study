@@ -10,6 +10,9 @@ public class Exam0510 {
   // 
   public static void main(String[] 변수명은상관없다) {
     System.out.println("Hello!");
+    for (String value : 변수명은상관없다) {
+      System.out.printf("[%s]\n", value);
+    }
   }
 }
 
