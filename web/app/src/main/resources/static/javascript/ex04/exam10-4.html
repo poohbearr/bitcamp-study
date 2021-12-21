@@ -16,10 +16,10 @@ function createScore(name, kor, eng, math) {
 	obj.kor = kor;
 	obj.eng = eng;
 	obj.math = math;
-	obj.sum = function() { 
+	obj.sum = function() {
 		return this.kor + this.eng + this.math;
 	};
-	obj.aver = function() { 
+	obj.aver = function() {
 		return this.sum() / 3;
 	};
 	return obj;
@@ -31,7 +31,7 @@ scores[1] = createScore("임꺽정", 90, 90, 90);
 scores[2] = createScore("유관순", 80, 80, 80);
 
 for (var score of scores) {
-    console.log(score.name, score.kor, score.eng, score.math, 
+    console.log(score.name, score.kor, score.eng, score.math,
             score.sum(), score.aver());
 }
 
@@ -41,14 +41,43 @@ console.log("--------------------------------------------");
 scores[2].kor = 100;
 
 for (var score of scores) {
-    console.log(score.name, score.kor, score.eng, score.math, 
+    console.log(score.name, score.kor, score.eng, score.math,
     		score.sum(), score.aver());
 }
+
+//연습
+console.log("-----------------------");
+function createScore2(name, kor, eng, math) {
+	var obj2 = {};
+	obj2.name = name;
+	obj2["kor"] = kor;
+	obj2['eng'] = eng;
+	obj2.math = math;
+	obj2.sum = function() {
+		return this.kor + this.eng + this.math;
+	};
+	obj2.aver = function() {
+		return this.sum() / 3;
+	};
+	return obj2;
+}
+
+var scores2 = [];
+scores2[0] = createScore2("김", 50, 60, 70);
+scores2[1] = createScore2("이", 80, 60, 50);
+scores2[2] = createScore2("박", 90, 50, 70);
+
+for (var score of scores2) {
+	console.log(score.name, score.kor, score.eng, score.math, score.sum(), score.aver());
+}
+
+console.log("-----'이' 영어30으로 변경-----");
+scores2[1].eng = 30;
+
+for (var score of scores2) {
+	console.log(score.name, score.kor, score.eng, score.math, score.sum(), score.aver());
+}
+
 </script>
 </body>
 </html>
-
-
-
-
-

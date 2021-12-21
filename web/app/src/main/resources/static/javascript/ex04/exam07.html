@@ -10,9 +10,9 @@
 "use strict"
 
 var obj = {
-	name: "홍길동", 
-	kor: 100, 
-	eng: 90, 
+	name: "홍길동",
+	kor: 100,
+	eng: 90,
 	math:80,
 	/*
   sum: function() {
@@ -20,20 +20,31 @@ var obj = {
   },
   */
 	sum() {
-	    return this.kor + this.eng + this.math; 
+	    return this.kor + this.eng + this.math;
 	},
 	aver() {
 	    return this.sum() / 3;
 	}
-}; 
+};
+
+var obj2 = {
+	name : "Aaa",
+	kor : 90,
+	eng : 85,
+	math : 80,
+	sum() {
+		return this.kor + this.eng + this.math
+	},
+	aver() {
+		return this.sum() / 3
+	}
+}
 
 console.log(obj.sum(), obj.aver());
+console.log(obj);
+console.log(obj2.sum(), obj2.aver());
+console.log(obj2);
 
 </script>
 </body>
 </html>
-
-
-
-
-
