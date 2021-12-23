@@ -20,22 +20,23 @@
 <script>
 "use strict"
 
-// 태그를 만들고 추가하는 방법 II
-// 
+태그를 만들고 추가하는 방법 II
+
 var section = document.querySelector("section");
 
 // 태그 객체를 만들지 않고 텍스트를 사용하여 자식 태그를 추가할 수 있다.
 var originContent = section.innerHTML;
 console.log(originContent);
 
-section.innerHTML = originContent + 
+section.innerHTML = originContent +
     "<article><h1>제목이래요!</h1><p>내용이지요!</p></article>";
+console.log(section);
 
+// 연습
+// var section2 = document.querySelector("section");
+// var originContent2 = section2.innerHTML;
+//
+// section2.innerHTML = originContent2 + "<article><h1>안녕하세요!</h1><p>반갑습니다!</p></article>"
 </script>
 </body>
 </html>
-
-
-
-
-

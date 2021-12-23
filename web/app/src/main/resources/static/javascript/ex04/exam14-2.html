@@ -25,22 +25,34 @@ Score.prototype.aver = function() {
   return this.sum() / 3;
 };
 
-
+// 함수의 prototype 소속 프로퍼티는
+// 그 함수가 초기화시킨 객체에 대해 사용할 수 있다.
 
 var score1 = new Score("홍길동", 100, 100, 100);
+console.log(score1.sum(), score1.aver());
+
 var score2 = new Score("임꺽정", 90, 90, 90);
 console.log(score2.sum(), score2.aver());
-// 다음 sum()과 aver() 함수는 특정 객체에만 소속된다.
-score1.sum = function() {
+
+// ------------연습-------------
+function ScorePratice(name, kor, eng, math) {
+  this.name = name;
+  this.kor = kor;
+  this.eng = eng;
+  this.math = math;
+}
+ScorePratice.prototype.sum = function() {
   return this.kor + this.eng + this.math;
 };
-score1.aver = function() {
+ScorePratice.prototype.aver = function() {
   return this.sum() / 3;
 };
 
-console.log(score.sum(), score.aver());
+var scorePractice1 = new ScorePratice("연습1", 50, 60, 70);
+console.log(scorePractice1.sum(), scorePractice1.aver());
 
-
+var scorePractice2 = new ScorePratice("연습2", 30, 40, 50);
+console.log(scorePractice2.sum(), scorePractice2.aver());
 </script>
 </body>
 </html>
