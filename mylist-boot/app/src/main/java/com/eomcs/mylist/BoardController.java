@@ -6,22 +6,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController 
 public class BoardController {
-
-  // Board 객체 목록을 저장할 메모리를 준비한다.
   ArrayList boardList = new ArrayList();
 
   @RequestMapping("/board/list")
   public Object list() {
-    return ArrayList.toArray(boardList); 
+    return ArrayList.toArray(boardList);
   }
 
   @RequestMapping("/board/add")
   public Object add(Board board) {
-
+    ArrayList.add(boardList, board);
     board.setCreatedDate(new Date(System.currentTimeMillis()));
-    ArrayList.add(boardList,board);
     return boardList.size;
   }
+
 
   @RequestMapping("/board/get")
   public Object get(int index, Board board) {
@@ -39,7 +37,7 @@ public class BoardController {
     if (index < 0 || index >= boardList.size) { // 값이 저장된 위치가 무효한 인덱스라면 
       return 0;
     }
-    Board old = (Board)boardList.list[index];
+    Board old = (Board) boardList.list[index];
     board.viewCount = old.viewCount;
     board.createdDate = old.createdDate;
 
@@ -54,9 +52,7 @@ public class BoardController {
 
     return ArrayList.remove(boardList, index) == null ? 0 : 1;
   }
-
 }
-
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>게시글</title>
+  <title>새 게시글</title>
 </head>
 <body>
 
@@ -10,7 +10,7 @@
 
 <form>
 제목*: <input id="x-title" type="text"><br>
-내용*: <textarea id="x-content" cols="60" rows="10"></textarea><br>
+내용*: <br><textarea id="x-content" cols="60" rows="10"></textarea><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
@@ -39,6 +39,7 @@
   document.querySelector("#x-cancel-btn").onclick = function() {
     window.location.href = "index.html";
   };
+  xTitle.focus();
 </script>
 
 </body>
