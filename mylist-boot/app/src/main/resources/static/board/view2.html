@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>게시글 보기</title>
+</head>
+<body>
+
+<h1>게시글 보기</h1>
+
+<form>
+  제목: <input id="x-title" type="text" readonly>
+  작성자: <input id="x-name" type="text" readonly>
+  날짜: <input id="x-date" type="text" readonly>
+  조회: <input id="x-viewCount" type="text" readonly><br>
+  내용: <br><textarea id="x-content" cols="100" rows="30" readonly></textarea><br>
+<button id="x-cancel-btn" type="button">취소</button>
+</form>
+
+<script type="text/javascript">
+
+  // 1) URL에서 쿼리스트링(query string)을 추출한다.
+  var arr = location.href.split("?");
+  console.log(arr);
+
+  if (arr.length == 1) {
+    alert("요청 형식이 옳바르지 않습니다.")
+    throw "URL 형식 오류!";
+  }
+
+  var qs = arr[1];
+  console.log(qs);
+
+  // 2) 쿼리 스트링에서 email 값을 추출한다.
+  var params = new URLSearchParams(qs);
+  var name = params.get("name");
+
+  // if (name == null) {
+  //   alert("이메일 값이 없습니다.");
+  //   throw "파라미터 오류!";
+  // }
+  console.log(name);
+
+  var today = new Date();
+  var today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  console.log(today);
+
+  var xTitle = document.querySelector("#x-title");
+  var xName = document.querySelector("#x-name");
+  var xDate = document.querySelector("#x-date");
+  var xContent = document.querySelector("#x-content");
+  var xViewCount = document.querySelector("#x-viewCount");
+  xDate.value = today;
+
+
+  // 3) 서버에서 데이터 가져오기
+  fetch(`/board/get?name=${name}`)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(board) {
+      // 4) 연락처 상세 정보를 화면에 출력한다.
+      xTitle.value = board.title;
+      xName.value = board.name;
+      xDate.value = board.createdDate;
+      xContent.value = board.content;
+      xViewCount.value = board.viewCount+1;
+      console.log(board.title);
+    });
+
+
+  document.querySelector("#x-cancel-btn").onclick = function() {
+    window.location.href = "index.html";
+  };
+
+
+</script>
+
+</body>
+</html>
