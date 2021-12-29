@@ -5,17 +5,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController 
 public class ContactController {
+  
+  // Contact 객체 목록을 저장할 메모리 준비
+  // => Object[] list = new Object[5];
+  // => int size = 0;
+  ArrayList contacts = new ArrayList();
 
   @RequestMapping("/contact/list")
   public Object list() {
-    return ArrayList.toArray(); 
+    return ArrayList.toArray(contacts); 
   }
 
   @RequestMapping("/contact/add")
   public Object add(Contact contact) {
     //    System.out.println(contact);
-    ArrayList.add(contact);
-    return ArrayList.size;
+    ArrayList.add(contacts, contact);
+    return contacts.size;
   }
 
 
@@ -26,7 +31,7 @@ public class ContactController {
       return "";
     }
 
-    return ArrayList.list[index];
+    return contacts.list[index];
   }
 
   @RequestMapping("/contact/update")
@@ -36,7 +41,7 @@ public class ContactController {
       return 0;
     }
 
-    return ArrayList.set(index, contact) == null ? 0 : 1;
+    return ArrayList.set(contacts, index, contact) == null ? 0 : 1;
   }
 
   @RequestMapping("/contact/delete")
@@ -46,7 +51,7 @@ public class ContactController {
       return 0;
     }
 
-    ArrayList.remove(index);
+    ArrayList.remove(contacts, index);
     return 1;
   }
 
@@ -54,9 +59,9 @@ public class ContactController {
   // - 이메일로 연락처 정보를 찾는다.
   // - 찾은 연락처의 배열 인덱스를 리턴한다.
   //
-  static int indexOf(String email) {
-    for (int i = 0; i < ArrayList.size; i++) {
-      Contact contact = (Contact) ArrayList.list[i];
+  int indexOf(String email) {
+    for (int i = 0; i < contacts.size; i++) {
+      Contact contact = (Contact) contacts.list[i];
       if (contact.email.equals(email)) { 
         return i;
       }

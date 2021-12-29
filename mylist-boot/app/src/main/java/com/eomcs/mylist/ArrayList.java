@@ -2,35 +2,37 @@ package com.eomcs.mylist;
 
 public class ArrayList {
 
-  static Object[] list = new Object[5];
-  static int size = 0;
+  // 인스턴스 필드(변수)
+  // => 인스턴스 필드는 new 명령을 통해 생성한다.
+  Object[] list = new Object[5];
+  int size = 0;
 
   //기능:
   // - 배열에 항목을 추가한다.
   // - 배열이 꽉찼으면 배열의 크기를 늘린다.
   //
-  static void add(Object obj) {
-    if (size == list.length) { 
-      list = grow();
+  static void add(ArrayList that, Object obj) {
+    if (that.size == that.list.length) { 
+      that.list = grow(that);
     }
-    list[size++] = obj;
+    that.list[that.size++] = obj;
   }
 
   // 기능:
   // - 배열의 크기를 늘린다.
   // - 기존 배열의 값을 복사해온다.
   //
-  static Object[] grow() {
-    Object[] arr = new Object[newLength()];
-    copy(list, arr);
+  static Object[] grow(ArrayList that) {
+    Object[] arr = new Object[newLength(that)];
+    copy(that.list, arr);
     return arr;
   }
 
   //기능:
   // - 주어진 배열에 대해 50% 증가시킨 새 배열의 길이를 알려준다.
   //
-  static int newLength() {
-    return list.length + (list.length >> 1);
+  static int newLength(ArrayList that) {
+    return that.list.length + (that.list.length >> 1);
   }
 
   // 기능: 
@@ -49,10 +51,10 @@ public class ArrayList {
   // 기능:
   // - 배열에 저장된 목록만 꺼내 새 배열에 담아 리턴한다.
   //
-  static Object[] toArray() {
-    Object[] arr = new Object[size]; 
-    for (int i = 0; i < size; i++) { 
-      arr[i] = list[i]; 
+  static Object[] toArray(ArrayList that) {
+    Object[] arr = new Object[that.size]; 
+    for (int i = 0; i < that.size; i++) { 
+      arr[i] = that.list[i]; 
     }
     return arr; 
   }
@@ -60,12 +62,15 @@ public class ArrayList {
   //기능:
   // - 배열에서 지정한 항목을 삭제한다.
   //
-  static Object remove(int index) {
-    Object old = list[index];
-    for (int i = index + 1; i < size; i++) {
-      list[i - 1] = list[i];
+  static Object remove(ArrayList that, int index) {
+    if (index < 0 || index >= that.size) { // 값이 저장된 위치가 무효한 인덱스라면 
+      return null;
     }
-    size--;
+    Object old = that.list[index];
+    for (int i = index + 1; i < that.size; i++) {
+      that.list[i - 1] = that.list[i];
+    }
+    that.size--;
     return old;
   }
 
@@ -74,12 +79,12 @@ public class ArrayList {
   // - 리턴 값: 
   //   - 변경하기 전에 저장되어 있던 값
   //
-  static Object set(int index, Object obj) {
-    if (index < 0 || index >= size) { // 값이 저장된 위치가 무효한 인덱스라면 
+  static Object set(ArrayList that, int index, Object obj) {
+    if (index < 0 || index >= that.size) { // 값이 저장된 위치가 무효한 인덱스라면 
       return null;
     }
-    Object old = list[index];
-    list[index] = obj;
+    Object old = that.list[index];
+    that.list[index] = obj;
     return old;
   }
 
