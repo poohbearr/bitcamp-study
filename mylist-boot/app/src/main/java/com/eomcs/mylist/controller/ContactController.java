@@ -1,26 +1,28 @@
-package com.eomcs.mylist;
+package com.eomcs.mylist.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.eomcs.mylist.domain.Contact;
+import com.eomcs.util.ArrayList;
 
 @RestController 
 public class ContactController {
-  
+
   // Contact 객체 목록을 저장할 메모리 준비
   // => Object[] list = new Object[5];
   // => int size = 0;
-  ArrayList contacts = new ArrayList();
+  ArrayList contactList = new ArrayList();
 
   @RequestMapping("/contact/list")
   public Object list() {
-    return ArrayList.toArray(contacts); 
+    return contactList.toArray(); 
   }
 
   @RequestMapping("/contact/add")
   public Object add(Contact contact) {
     //    System.out.println(contact);
-    ArrayList.add(contacts, contact);
-    return contacts.size;
+    contactList.add(contact);
+    return contactList.size();
   }
 
 
@@ -31,17 +33,17 @@ public class ContactController {
       return "";
     }
 
-    return contacts.list[index];
+    return contactList.get(index);
   }
 
   @RequestMapping("/contact/update")
   public Object update(Contact contact) {
-    int index = indexOf(contact.email);
+    int index = indexOf(contact.getEmail());
     if (index == -1) {
       return 0;
     }
 
-    return ArrayList.set(contacts, index, contact) == null ? 0 : 1;
+    return contactList.set(index, contact) == null ? 0 : 1;
   }
 
   @RequestMapping("/contact/delete")
@@ -51,7 +53,7 @@ public class ContactController {
       return 0;
     }
 
-    ArrayList.remove(contacts, index);
+    contactList.remove(index);
     return 1;
   }
 
@@ -60,9 +62,9 @@ public class ContactController {
   // - 찾은 연락처의 배열 인덱스를 리턴한다.
   //
   int indexOf(String email) {
-    for (int i = 0; i < contacts.size; i++) {
-      Contact contact = (Contact) contacts.list[i];
-      if (contact.email.equals(email)) { 
+    for (int i = 0; i < contactList.size(); i++) {
+      Contact contact = (Contact) contactList.get(i);
+      if (contact.getEmail().equals(email)) { 
         return i;
       }
     }
