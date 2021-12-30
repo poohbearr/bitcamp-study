@@ -22,12 +22,20 @@ public class Exam0111 {
     // - 출력 형식을 바꾸고 싶으면 그 블록으로 가서 변경하면 된다.
     //
     printScore(name, kor, eng, math);
+    printScore2(name, kor, eng, math);
   }
 
   static void printScore(String name, int kor, int eng, int math) {
     int sum = kor + eng + math;
     float aver = sum / 3f;
     System.out.printf("%s: %d, %d, %d, %d, %.1f\n", name, kor, eng, math, sum, aver);
+  }
+
+  // 연습
+  static void printScore2(String name, int kor, int eng, int math) {
+    int sum = kor + eng + math;
+    float aver = sum / 3f;
+    System.out.printf("%s: %d, %d, %d, %d, %.1f", name, kor, eng, math, sum, aver);
   }
 }
 // 만약 과목이 12개라면 어떨것 같아?
