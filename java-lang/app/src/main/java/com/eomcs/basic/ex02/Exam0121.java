@@ -1,4 +1,4 @@
-// String - String 인스터스에 있는 값을 비교하기 : equalsIgnoreCase()
+// String - String 인스턴스에 있는 값을 비교하기 : equalsIgnoreCase()
 package com.eomcs.basic.ex02;
 
 public class Exam0121 {

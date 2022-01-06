@@ -10,6 +10,10 @@ import com.eomcs.util.ArrayList;
 public class BoardController {
   ArrayList boardList = new ArrayList();
 
+  public BoardController() {
+    System.out.println("BoardController() 호출됨!!!");
+  }
+
   @RequestMapping("/board/list")
   public Object list() {
     return boardList.toArray();
