@@ -1,10 +1,22 @@
 package com.eomcs.mylist.controller;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.util.ArrayList;
 
+//1) 생성자에서 FileReader 객체를 준비한다.
+//2) 파일에서 문자를 읽어 출력한다.
+//3) 파일을 더이상 읽을 수 없으면 반복문을 종료한다.
+//4) 파일에서 읽은 문자를 버퍼에 담았다가 줄바꿈 코드를 만나면 출력한다. 
+//5) 한 줄 출력한 다음에 버퍼를 비운다.
+//6) 한 줄의 CSV 데이터를 읽어 분석한 후 Contact 객체에 담아서 목록에 추가한다.
+//7) CSV 데이터로 Contact 객체를 초기화시키는 일을 Contact 객체의 생성자로 옮긴다.
+//8) Contact 클래스의 valueOf() 스태틱 메서드를 사용하여 CSV 데이터로 객체를 생성한다.
+//9) while 문 정리!
+//
 @RestController 
 public class ContactController {
 
@@ -13,9 +25,23 @@ public class ContactController {
   // => int size = 0;
   ArrayList contactList;
 
-  public ContactController() {
+  public ContactController() throws Exception {
     contactList = new ArrayList();
     System.out.println("ContactController 호출됨!!!");
+
+    FileReader in = new FileReader("contacts5.csv");
+    StringBuilder buf = new StringBuilder();
+    int c;
+
+    while((c = in.read()) != -1) {
+      if (c == '\n') {
+        contactList.add(Contact.valueOf(buf.toString()));
+        buf.setLength(0);
+      } else {
+        buf.append((char) c);
+      }
+    }
+    in.close();
   }
 
   @RequestMapping("/contact/list")
@@ -62,6 +88,19 @@ public class ContactController {
     return 1;
   }
 
+  @RequestMapping("/contact/save")
+  public Object save() throws Exception {
+    FileWriter out = new FileWriter("contacts5.csv");
+
+    Object[] arr = contactList.toArray();
+    for (Object obj : arr) {
+      Contact contact = (Contact) obj;
+      out.write(contact.toCsvString() + '\n');
+    }
+    out.close();
+    return arr.length;
+  }
+
   // 기능:
   // - 이메일로 연락처 정보를 찾는다.
   // - 찾은 연락처의 배열 인덱스를 리턴한다.
@@ -76,7 +115,6 @@ public class ContactController {
     return -1;
   }
 }
-
 
 
 

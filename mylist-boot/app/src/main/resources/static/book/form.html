@@ -2,20 +2,20 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>새 책</title>
+  <title>새 독서록</title>
 </head>
 <body>
 
-<h1>새 책</h1>
+<h1>새 독서록</h1>
 
 <form>
 *제목: <input id="x-title" type="text"><br>
 *저자: <input id="x-author" type="text"><br>
 *출판사: <input id="x-press" type="text"><br>
-*페이지: <input id="x-page" type="text"><br>
-*가격: <input id="x-price" type="text"><br>
-*읽은날짜: <input id="x-readDate" type="date"><br>
-서평:<br /> <textarea id="x-feed" type="text" cols="60" rows="10"></textarea><br>
+페이지: <input id="x-page" type="number" value="0"><br>
+가격: <input id="x-price" type="number" value="0"><br>
+독서일: <input id="x-readDate" type="date"><br>
+*소감:<br /> <textarea id="x-feed" type="text" cols="60" rows="10"></textarea><br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
 </form>
@@ -30,14 +30,23 @@
   var xFeed = document.querySelector("#x-feed");
 
 
+
   document.querySelector("#x-add-btn").onclick = function() {
-    if (xTitle.value == "" || xAuthor.value == "" || xPress.value == "" || xPage.value == "" || xPrice.value == "" || xReadDate.value == "") {
+    if (xTitle.value == "" || xAuthor.value == "" || xPress.value == "" ||
+    xFeed.value == "") {
       window.alert("필수 입력 항목이 비어 있습니다.");
       return;
     }
 
-    fetch(`/book/add?title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}&page=${xPage.value}
-      &price=${xPrice.value}&readDate=${xReadDate.value}&feed=${xFeed.value}`)
+    var qs = `title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}`;
+    qs += `&page=${xPage.value}&price=${xPrice.value}&feed=${xFeed.value}`;
+
+  // 독서일을 입력했을 때만 서버에 보낸다.
+    if (xReadDate.value != "") {
+      qs += `&readDate=${xReadDate.value}`;
+    }
+
+    fetch(`/book/add?${qs}`)
       .then(function(response) {
         return response.text();
       })

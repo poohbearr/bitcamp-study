@@ -9,6 +9,36 @@ public class Contact {
   public Contact() {
     System.out.println("Contact() 호출됨!!!");
   }
+
+  public Contact(String csvStr) {
+    String[] values = csvStr.split(",");
+
+    this.setName(values[0]);
+    this.setEmail(values[1]);
+    this.setTel(values[2]);
+    this.setCompany(values[3]);
+  }
+
+  public static Contact valueOf(String csvStr) {
+    String[] values = csvStr.split(",");
+
+    Contact contact = new Contact();
+    contact.setName(values[0]);
+    contact.setEmail(values[1]);
+    contact.setTel(values[2]);
+    contact.setCompany(values[3]);
+
+    return contact;
+  }
+
+  public String toCsvString() {
+    return String.format("%s,%s,%s,%s",
+        this.getName(),
+        this.getEmail(),
+        this.getTel(),
+        this.getCompany());
+  }
+
   @Override
   public String toString() {
     return "Contact [name=" + name + ", email=" + email + ", tel=" + tel + ", company=" + company

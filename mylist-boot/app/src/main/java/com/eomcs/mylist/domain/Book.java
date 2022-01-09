@@ -11,6 +11,50 @@ public class Book {
   Date readDate;
   String feed;
 
+  public Book() {
+    System.out.println("Book() 호출됨!!!");
+  }
+
+  public Book(String csvStr) {
+    String[] values = csvStr.split(","); // 예) ["홍길동","hong@test.com",010-1111-1111","비트캠프"]
+
+    this.setTitle(values[0]);
+    this.setAuthor(values[1]);
+    this.setPress(values[2]);
+    this.setPage(Integer.valueOf(values[3]));
+    this.setPrice(Integer.valueOf(values[4]));
+    this.setReadDate(Date.valueOf(values[5]));
+    this.setFeed(values[6]);
+  }
+
+  public static Book valueOf(String csvStr) {
+    // 예) String csvStr => "홍길동,hong@test.com,010-1111-1111,비트캠프"
+
+    String[] values = csvStr.split(","); // 예) ["홍길동","hong@test.com",010-1111-1111","비트캠프"]
+
+    Book book = new Book();
+    book.setTitle(values[0]);
+    book.setAuthor(values[1]);
+    book.setPress(values[2]);
+    book.setPage(Integer.valueOf(values[3]));
+    book.setPrice(Integer.valueOf(values[4]));
+    book.setReadDate(Date.valueOf(values[5]));
+    book.setFeed(values[6]);
+
+    return book;
+  }
+
+  public String toCsvString() {
+    return String.format("%s,%s,%s,%s,%s,%s,%s", 
+        this.getTitle(),
+        this.getAuthor(),
+        this.getPress(),
+        this.getPage(),
+        this.getPrice(),
+        this.getReadDate(),
+        this.getFeed());
+  }
+
   public String getTitle() {
     return title;
   }
@@ -54,10 +98,10 @@ public class Book {
     this.feed = feed;
   }
 
-  @Override
-  public String toString() {
-    return "Book [title=" + title + ", author=" + author + ", press=" + press + ", page=" + page
-        + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
-  }
+  //  @Override
+  //  public String toString() {
+  //    return "Book [title=" + title + ", author=" + author + ", press=" + press + ", page=" + page
+  //        + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
+  //  }
 
 }
