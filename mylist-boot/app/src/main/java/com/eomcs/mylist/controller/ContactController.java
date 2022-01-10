@@ -1,9 +1,9 @@
 package com.eomcs.mylist.controller;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.eomcs.io.FileReader2;
+import com.eomcs.io.FileWriter2;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.util.ArrayList;
 
@@ -20,26 +20,17 @@ import com.eomcs.util.ArrayList;
 @RestController 
 public class ContactController {
 
-  // Contact 객체 목록을 저장할 메모리 준비
-  // => Object[] list = new Object[5];
-  // => int size = 0;
   ArrayList contactList;
 
   public ContactController() throws Exception {
     contactList = new ArrayList();
-    System.out.println("ContactController 호출됨!!!");
+    System.out.println("ContactController() 호출됨!");
 
-    FileReader in = new FileReader("contacts5.csv");
-    StringBuilder buf = new StringBuilder();
-    int c;
+    FileReader2 in = new FileReader2("contacts.csv");
+    String line;
 
-    while((c = in.read()) != -1) {
-      if (c == '\n') {
-        contactList.add(Contact.valueOf(buf.toString()));
-        buf.setLength(0);
-      } else {
-        buf.append((char) c);
-      }
+    while ((line = in.readLine()).length() != 0) {// 파일에서 한 문자를 읽는다. 더이상 읽을 문자가 없으면 반복문을 종료하다.
+      contactList.add(Contact.valueOf(line)); // 파일에서 읽은 CSV 데이터로 객체를 초기화시킨후 목록에 등록한다.
     }
     in.close();
   }
@@ -63,7 +54,6 @@ public class ContactController {
     if (index == -1) {
       return "";
     }
-
     return contactList.get(index);
   }
 
@@ -90,24 +80,21 @@ public class ContactController {
 
   @RequestMapping("/contact/save")
   public Object save() throws Exception {
-    FileWriter out = new FileWriter("contacts5.csv");
+    FileWriter2 out = new FileWriter2("contacts.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
 
     Object[] arr = contactList.toArray();
     for (Object obj : arr) {
       Contact contact = (Contact) obj;
-      out.write(contact.toCsvString() + '\n');
+      out.println(contact.toCsvString());
     }
+
     out.close();
     return arr.length;
   }
 
-  // 기능:
-  // - 이메일로 연락처 정보를 찾는다.
-  // - 찾은 연락처의 배열 인덱스를 리턴한다.
-  //
   int indexOf(String email) {
     for (int i = 0; i < contactList.size(); i++) {
-      Contact contact = (Contact) contactList.get(i);
+      Contact contact =  (Contact) contactList.get(i);
       if (contact.getEmail().equals(email)) { 
         return i;
       }
@@ -115,6 +102,7 @@ public class ContactController {
     return -1;
   }
 }
+
 
 
 
