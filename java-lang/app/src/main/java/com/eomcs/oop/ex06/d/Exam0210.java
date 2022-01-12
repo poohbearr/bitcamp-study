@@ -12,6 +12,7 @@ class Sedan extends Car {
   public void run() {
     System.out.println("Sedan.run() 호출됨!");
   }
+
 }
 
 public class Exam0210 {
