@@ -3,7 +3,7 @@ package com.eomcs.oop.ex05.x4.app1;
 
 // 자동차 만들기
 //
-// 1) 기존 코드를 상속하여 새 클래스를 만든 후 기능 덧붙이기
+// 3) 기존 코드를 상속하여 새 클래스를 만든 후 기능 덧붙이기
 //
 public class CarTest1 {
 
