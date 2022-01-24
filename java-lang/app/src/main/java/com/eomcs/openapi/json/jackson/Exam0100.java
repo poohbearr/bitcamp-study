@@ -1,4 +1,4 @@
-// JSON 라이브러리 준비 - jackson-databind 라이브러러 가져오기
+// JSON 라이브러리 준비 - jackson-databind 라이브러리 가져오기
 package com.eomcs.openapi.json.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
