@@ -7,6 +7,12 @@ public class ArrayList implements java.io.Serializable {
   Object[] list = new Object[5];
   int size = 0;
 
+  public ArrayList() {}
+
+  public ArrayList(Object[] arr) {
+    this.addAll(arr);
+  }
+
   //기능:
   // - 배열에 항목을 추가한다.
   // - 배열이 꽉찼으면 배열의 크기를 늘린다.
@@ -16,6 +22,12 @@ public class ArrayList implements java.io.Serializable {
       this.list = this.grow();
     }
     this.list[this.size++] = obj;
+  }
+
+  public void addAll(Object[] arr) {
+    for (Object obj : arr) {
+      this.add(obj);
+    }
   }
 
   // 기능:
