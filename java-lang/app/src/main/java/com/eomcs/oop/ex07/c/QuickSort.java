@@ -2,10 +2,10 @@ package com.eomcs.oop.ex07.c;
 
 public class QuickSort extends Sorter {
 
-  //  @Override
-  //  public void sort(int[] values) {
-  //    start(values, 0, values.length - 1);
-  //  }
+  @Override
+  public void sort(int[] values) {
+    start(values, 0, values.length - 1);
+  }
 
   private int partition(int[] arr, int low, int high)
   {
