@@ -62,7 +62,7 @@ public class Exam04 {
     obj.m3();
 
     // 인터페이스에 정의된 private 메서드는 호출할 수 없다.
-    //    obj.m1(); // 컴파일 오류!
+    //    obj.x(); // 컴파일 오류!
 
   }
 
