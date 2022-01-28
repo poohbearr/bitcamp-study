@@ -2,6 +2,7 @@ package com.eomcs.app1;
 
 import java.io.PrintStream;
 import java.net.Socket;
+import java.net.URLDecoder;
 import java.util.Scanner;
 
 public class Worker extends Thread {
@@ -35,7 +36,7 @@ public class Worker extends Thread {
       String[] values = requestUri.split("/"); // 예) {"", "plus", "100", "200"}
 
       if (values.length == 4) {
-        String op = values[1]; // "plus"
+        String op = URLDecoder.decode(values[1], "UTF-8"); // "%2b" -> "+", "-", "*", "%2f" -> "/"
         int a = Integer.parseInt(values[2]); // "100"
         int b = Integer.parseInt(values[3]); // "200"
 
@@ -43,18 +44,17 @@ public class Worker extends Thread {
 
         String response = null;
 
-
         switch (op) {
-          case "plus": 
+          case "+": 
             response = String.format("서영범: %d + %d = %d", a, b, (a + b));
             break;
-          case "minus": 
+          case "-": 
             response = String.format("서영범: %d - %d = %d", a, b, (a - b));
             break;
-          case "multiple": 
+          case "*": 
             response = String.format("서영범: %d * %d = %d", a, b, (a * b));
             break;
-          case "divide": 
+          case "/": 
             response = String.format("서영범: %d / %d = %d", a, b, (a / b));
             break;
           default:
