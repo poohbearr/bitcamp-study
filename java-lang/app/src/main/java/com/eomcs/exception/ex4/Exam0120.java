@@ -3,12 +3,12 @@ package com.eomcs.exception.ex4;
 
 public class Exam0120 {
 
-  static void m1() throws Exception {
+  static void m1() throws Exception  {
     // m2()와 같다.
     m2();
   }
 
-  static void m2() throws Exception {
+  static void m2() throws Exception  {
     // m3()에서 발생된 예외를 상위 호출자에게 던지려면
     // m2() 메서드에서도 선언부에 예외를 기술해야 한다.
     // => m2() 안에서 Exception 예외가 발생합니다" 라고!
