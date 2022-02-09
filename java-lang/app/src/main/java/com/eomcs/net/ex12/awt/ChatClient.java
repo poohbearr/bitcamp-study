@@ -15,6 +15,7 @@ public class ChatClient extends Frame {
 
   public ChatClient() {
     super("채팅");
+
     this.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
