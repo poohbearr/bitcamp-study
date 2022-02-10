@@ -25,15 +25,40 @@ public class ChatClient extends JFrame {
   JTextField portTf = new JTextField(4);
   JTextArea messageListTa = new JTextArea();
   JTextField messageTf = new JTextField(35);
+  JButton connectBtn = new JButton("연결");
+
   Socket socket;
   DataInputStream in;
   DataOutputStream out;
+  String nickname;
 
   public ChatClient() {
-    super("채팅!!");
+
+    String title = "대화명을 입력하세요\n(2자 이상)";
+
+    while (true) {
+      nickname = JOptionPane.showInputDialog(title);
+      if (nickname == null) {
+        System.exit(0);
+      } else if (nickname != null && nickname.length() >= 2) {
+        break;
+      }
+      title = "대화명을 다시 입력하세요!\n(2자 이상)";
+    }
+
+    this.setTitle("채팅!! - " + nickname);
+
     this.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
+        if (connectBtn.getText().equals("종료")) { // 
+          try {
+            out.writeUTF("\\quit");
+            out.flush();
+          } catch (Exception ex) {
+
+          }
+        }
         try {in.close();} catch (Exception ex) {}
         try {out.close();} catch (Exception ex) {}
         try {socket.close();} catch (Exception ex) {}
@@ -46,12 +71,8 @@ public class ChatClient extends JFrame {
 
     JPanel topPanel = new JPanel();
     topPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
-
     topPanel.add(addressTf);
-
     topPanel.add(portTf);
-
-    JButton connectBtn = new JButton("연결");
 
     // 1) 로컬 클래스
     //    class MyActionListener implements ActionListener {
@@ -75,7 +96,6 @@ public class ChatClient extends JFrame {
     connectBtn.addActionListener(this::connectChatServer);
 
     topPanel.add(connectBtn);
-
     contentPane.add(topPanel, BorderLayout.NORTH);
 
     JScrollPane scrollPane = new JScrollPane(messageListTa);
@@ -83,7 +103,6 @@ public class ChatClient extends JFrame {
 
     JPanel bottomPanel = new JPanel();
     bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
-
     bottomPanel.add(messageTf);
 
     JButton sendBtn = new JButton("보내기");
@@ -93,6 +112,7 @@ public class ChatClient extends JFrame {
     contentPane.add(bottomPanel, BorderLayout.SOUTH);
 
     messageTf.addActionListener(this::sendMessage);
+
 
     this.setVisible(true);
   }
@@ -106,22 +126,34 @@ public class ChatClient extends JFrame {
   }
 
   public void connectChatServer(ActionEvent e) {
-    System.out.println("서버에 연결하기!");
+    if (connectBtn.getText().equals("연결")) {
+      try {
+        socket = new Socket(addressTf.getText(), Integer.parseInt(portTf.getText()));
 
-    try {
-      socket = new Socket(addressTf.getText(), Integer.parseInt(portTf.getText()));
+        in = new DataInputStream(socket.getInputStream());
+        out = new DataOutputStream(socket.getOutputStream());
 
-      in = new DataInputStream(socket.getInputStream());
-      out = new DataOutputStream(socket.getOutputStream());
+        out.writeUTF(nickname);
+        out.flush();
 
-      String welcomeMessage = in.readUTF();
-      messageListTa.append(welcomeMessage + "\n");
+        new MessageReceiver(in).start();
 
-      new MessageReceiver(in).start();
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(
+            this, "서버에 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
+      }
 
-    } catch (Exception ex) {
-      JOptionPane.showMessageDialog(
-          this, "서버에 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
+      connectBtn.setText("종료");
+
+    } else {
+      try {
+        out.writeUTF("\\quit");
+        out.flush();
+      } catch (Exception ex) {
+
+      }
+      connectBtn.setText("연결");
+      messageListTa.setText("");
     }
   }
 
@@ -153,6 +185,9 @@ public class ChatClient extends JFrame {
       while (true) {
         try {
           String message = in.readUTF();
+          if (message.equals("<![QUIT[]]>")) { // 서버에서 연결을 끊겠다는 메시지가 오면 스레드를 종료한다.
+            break; // 스레드 종료? run() 메서드의 실행을 마치면 스레드는 종료한다.
+          }
           messageListTa.append(message + "\n");
 
         } catch (Exception e) {}
