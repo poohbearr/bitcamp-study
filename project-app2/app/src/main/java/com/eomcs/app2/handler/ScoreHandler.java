@@ -9,6 +9,7 @@ import com.eomcs.app2.vo.Score;
 import com.eomcs.util.Prompt;
 
 public class ScoreHandler {
+
   ArrayList<Score> scores = new ArrayList<>();
 
   public ScoreHandler() {
@@ -17,6 +18,7 @@ public class ScoreHandler {
       while ((line = in.readLine()) != null) {
         scores.add(Score.fromCSV(line));
       }
+
     } catch (Exception e) {
       System.out.println("데이터 로딩 중 오류 발생!");
     }
@@ -26,7 +28,6 @@ public class ScoreHandler {
     try (PrintWriter out = new PrintWriter(new FileWriter("./score.csv"));) {
       for (Score score : scores) {
         out.println(score.toCSV());
-
       }
     } catch (Exception e) {
       System.out.println("데이터 저장 중 오류 발생!");
@@ -57,8 +58,8 @@ public class ScoreHandler {
 
   public void detail() {
     int no = Prompt.promptInt("번호? ");
+
     if (no < 0 || no >= scores.size()) {
-      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 
@@ -74,8 +75,8 @@ public class ScoreHandler {
 
   public void update() {
     int no = Prompt.promptInt("번호? ");
+
     if (no < 0 || no >= scores.size()) {
-      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 
@@ -93,8 +94,8 @@ public class ScoreHandler {
 
   public void delete() {
     int no = Prompt.promptInt("번호? ");
+
     if (no < 0 || no >= scores.size()) {
-      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 
