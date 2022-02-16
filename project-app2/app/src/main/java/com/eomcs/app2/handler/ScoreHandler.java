@@ -60,6 +60,7 @@ public class ScoreHandler {
     int no = Prompt.promptInt("번호? ");
 
     if (no < 0 || no >= scores.size()) {
+      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 
@@ -77,6 +78,7 @@ public class ScoreHandler {
     int no = Prompt.promptInt("번호? ");
 
     if (no < 0 || no >= scores.size()) {
+      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 
@@ -96,6 +98,7 @@ public class ScoreHandler {
     int no = Prompt.promptInt("번호? ");
 
     if (no < 0 || no >= scores.size()) {
+      System.out.println("번호가 유효하지 않습니다.");
       return;
     }
 

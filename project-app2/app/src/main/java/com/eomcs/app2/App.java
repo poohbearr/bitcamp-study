@@ -16,7 +16,6 @@ public class App {
       printMenu();
 
       String input = Prompt.promptString("명령> ");
-      System.out.println();
 
       if(checkQuit(input)) {
         break;
@@ -34,9 +33,11 @@ public class App {
 
         }
       } catch (Exception e) {
-        System.out.println("실행 중 오류 발생!");
+        System.out.println("실행 중 오류 발생!" + e.getMessage());
       }
+      System.out.println();
     }
+    System.out.println("종료!");
   }
 
 
