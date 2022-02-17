@@ -2,8 +2,9 @@ package com.eomcs.app2.vo;
 
 import java.io.Serializable;
 
-public class Score implements Serializable {
+public class Score  implements Serializable {
   private static final long serialVersionUID = 1L;
+
   String name;
   int kor;
   int eng;
@@ -22,7 +23,7 @@ public class Score implements Serializable {
   }
 
   public String toCSV() {
-    return String.format("%s,%d,%d,%d",
+    return String.format("%s,%d,%d,%d", 
         this.getName(),
         this.getKor(),
         this.getEng(),

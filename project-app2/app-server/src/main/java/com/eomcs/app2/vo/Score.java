@@ -23,7 +23,7 @@ public class Score implements Serializable {
   }
 
   public String toCSV() {
-    return String.format("%s,%d,%d,%d",
+    return String.format("%s,%d,%d,%d", 
         this.getName(),
         this.getKor(),
         this.getEng(),

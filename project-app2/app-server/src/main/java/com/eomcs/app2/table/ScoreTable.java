@@ -25,7 +25,6 @@ public class ScoreTable {
     try (PrintWriter out = new PrintWriter(new FileWriter("./score.csv"));) {
       for (Score score : scores) {
         out.println(score.toCSV());
-
       }
     } catch (Exception e) {
       System.out.println("데이터 저장 중 오류 발생!");
