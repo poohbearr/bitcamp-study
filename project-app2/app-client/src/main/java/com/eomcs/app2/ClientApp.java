@@ -14,7 +14,7 @@ public class ClientApp {
     try {ScoreTableProxy scoreTableProxy = new ScoreTableProxy("localhost", 3336);
     ScoreHandler scoreHandler = new ScoreHandler(scoreTableProxy);
 
-    System.out.println("서버와 연결되었음!");
+    System.out.println("서버와 연결되었음!!!");
 
     while (true) {
       printMenu();
