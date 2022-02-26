@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Receiver {
 
   public static void main(String[] args) throws Exception {
-    System.out.println("서버 실행!");
+    System.out.println("서버 실행!!!");
 
     // 1) 다른 컴퓨터의 연결 요청을 기다린다.
     // - new ServerSocket(포트번호)
