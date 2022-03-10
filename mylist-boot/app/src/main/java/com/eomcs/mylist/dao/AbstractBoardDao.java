@@ -1,11 +1,11 @@
 package com.eomcs.mylist.dao;
 
+import java.util.ArrayList;
 import com.eomcs.mylist.domain.Board;
-import com.eomcs.util.ArrayList;
 
 public abstract class AbstractBoardDao implements BoardDao {
 
-  ArrayList boardList = new ArrayList(); // 변수 선언 = 변수를 만들라는 명령!
+  protected ArrayList<Board> boardList = new ArrayList<Board>(); // 변수 선언 = 변수를 만들라는 명령!
 
   protected abstract void save() throws Exception;
 
@@ -30,7 +30,7 @@ public abstract class AbstractBoardDao implements BoardDao {
     if (no < 0 || no >= boardList.size()) {
       return null;
     }
-    return (Board) boardList.get(no);
+    return boardList.get(no);
   }
 
   @Override
