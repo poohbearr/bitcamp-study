@@ -1,20 +1,21 @@
 package com.eomcs.mylist.dao;
 
+import java.util.List;
 import com.eomcs.mylist.domain.Board;
 
 public interface BoardDao {
 
   int countAll();
 
-  Object[] findAll();
+  List<Board> findAll();
 
-  void insert(Board board) throws Exception ;
+  int insert(Board board);
 
   Board findByNo(int no);
 
-  int update(int no, Board board) throws Exception;
+  int update(Board board);
 
-  int delete(int no) throws Exception;
+  int delete(int no);
 
-  void increaseViewCount(int no) throws Exception;
+  int increaseViewCount(int no);
 }
