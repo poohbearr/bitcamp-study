@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+  namespace = "인터페이스의 패키지 및 이름"과 일치해야 한다.
+ -->
+<mapper namespace="com.eomcs.mylist.dao.TodoDao">
+
+  <!--  테이블의 컬럼과 객체 필드를 연결한다. -->
+  <resultMap type="todo" id="todoMap">
+    <id column="todo_no" property="no"/>
+    <result column="title" property="title"/>
+    <result column="done" property="done"/>
+  </resultMap>
+
+  <!-- 
+    id => 인터페이스의 메서드 이름과 일치해야 한다.
+   -->
+  <select id="countAll" resultType="int">
+    select count(*) from ml_todo
+  </select>
+  
+  <select id="findAll" resultMap="todoMap">
+    select
+      todo_no,
+      title,
+      done
+    from 
+      ml_todo 
+    order by 
+      title asc
+  </select>
+  
+  <insert id="insert" parameterType="todo">
+    insert into ml_todo(title)
+    values(#{title})
+  </insert>
+  
+  <select id="findByNo" resultMap="todoMap" parameterType="int">
+	  select
+	    todo_no,
+      title,
+      done
+	  from
+	    ml_todo
+	  where
+	    todo_no=#{no}
+  </select>
+  
+  <update id="update" parameterType="todo">
+    update ml_todo set 
+      title=#{title},
+    where 
+      todo_no=#{no}
+  </update>
+  
+  <update id="updateDone">
+    update ml_todo set 
+      done=#{done}
+    where 
+      todo_no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from ml_todo
+    where todo_no=#{no}
+  </delete>
+  
+</mapper>
