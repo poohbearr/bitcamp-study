@@ -51,7 +51,7 @@
   
   <update id="update" parameterType="todo">
     update ml_todo set 
-      title=#{title},
+      title=#{title}
     where 
       todo_no=#{no}
   </update>
