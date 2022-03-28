@@ -3,6 +3,7 @@ plugins {
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
   id 'eclipse'
+  id "io.freefair.lombok" version "6.4.1"
 }
 
 group = 'com.eomcs'
@@ -14,6 +15,9 @@ repositories {
 }
 
 dependencies {
+  // 썸네일 이미지 생성 라이브러리
+  implementation 'net.coobird:thumbnailator:0.4.17'
+  
   implementation 'org.springframework.boot:spring-boot-starter-jdbc'
   
   implementation 'org.springframework.boot:spring-boot-starter-web'
