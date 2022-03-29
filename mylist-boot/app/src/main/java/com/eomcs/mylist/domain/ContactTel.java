@@ -20,5 +20,4 @@ public class ContactTel {
     this(telTypeNo, tel);
     this.contactNo = contactNo;
   }
-
 }

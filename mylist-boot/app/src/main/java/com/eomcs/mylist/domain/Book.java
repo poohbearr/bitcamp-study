@@ -14,5 +14,4 @@ public class Book {
   Date readDate;
   String feed;
   String photo;
-
 }
