@@ -51,6 +51,7 @@ public class BookController {
   public Object update(Book book, MultipartFile file) {
     try {
       book.setPhoto(saveFile(file));
+
       return bookService.update(book);
 
     } catch (Exception e) {
@@ -75,14 +76,14 @@ public class BookController {
 
       // HTTP 응답 헤더를 준비한다.
       HttpHeaders header = new HttpHeaders();
-
-      // 다운로드 파일명을 지정하고 싶다면 다음의 응답 헤더를 추가하라!
-      // => 다운로드 파일을 지정하지 않으면 요청 URL이 파일명으로 사용된다.
-      header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=오리지널파일명");
-
       header.add("Cache-Control", "no-cache, no-store, must-revalidate");
       header.add("Pragma", "no-cache");
       header.add("Expires", "0");
+
+      // 다운로드 파일명을 지정하고 싶다면 다음의 응답 헤더를 추가하라!
+      // => 다운로드 파일을 지정하지 않으면 요청 URL이 파일명으로 사용된다.
+      header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename);
+
 
 
       //      // HTTP 응답 생성기를 사용하여 다운로드 파일의 응답 데이터를 준비한다.
