@@ -1,6 +1,6 @@
 <h1>게시글</h1>
 
-<form>
+<form id="form1">
 번호: <input name="no" type="text" readonly><br>
 제목*: <input name="title" type="text"><br>
 내용*: <br><textarea name="content" cols="50" rows="10"></textarea><br>
@@ -75,7 +75,7 @@
     
     fetch("/board/update", {
     	method: "POST",
-    	body: new URLSearchParam(fd)
+    	body: new URLSearchParams(fd)
     }).then(function(response) {
       return response.json();
     }).then(function(result) {
