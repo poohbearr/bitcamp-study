@@ -31,9 +31,6 @@
   <button id="logout-btn" type="button" class="login">로그아웃</button>
 
 
-
-
-
 <script>
 css(".login", "display", "none");
 
@@ -55,7 +52,7 @@ function css(selector, name, value) {
 }
 
 document.querySelector("#login-btn").onclick = function() {
-	location.href = "/member/signin.html";
+	location.href = "/template/page1.html?content=/member/signin.html";
 };
 
 document.querySelector("#logout-btn").onclick = function() {
