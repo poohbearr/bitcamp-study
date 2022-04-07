@@ -49,7 +49,7 @@ public class BoardController {
   public Object get(int no) {
     Board board = boardService.get(no);
     if (board == null) {
-      return new ResultMap().setStatus(FAIL).setData("해당 번호의 게시글이 업습니다.");
+      return new ResultMap().setStatus(FAIL).setData("해당 번호의 게시글이 없습니다.");
     }
     return new ResultMap().setStatus(SUCCESS).setData(board);
   }
