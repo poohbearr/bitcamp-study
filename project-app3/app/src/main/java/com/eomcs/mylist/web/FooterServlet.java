@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 public class FooterServlet extends HttpServlet {
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+  protected void service(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    // GET, POST 요청 모두에 대응할 수 있도록 service()를 오버라이딩 한다.
+    // GET, POST 요청 모두에 대응할 수 있도록 service() 를 오버라이딩 한다.
+
     resp.setContentType("text/html;charset=UTF-8");
     PrintWriter out = resp.getWriter();
 
@@ -32,7 +33,6 @@ public class FooterServlet extends HttpServlet {
     out.println("</style>");
     out.println("<span id=\"company-title\">비트캠프</span> ");
     out.println("<address id=\"company-address\">서울 강남구 강남대로94길 20, 삼오빌딩</address>  ");
-
   }
 }
 

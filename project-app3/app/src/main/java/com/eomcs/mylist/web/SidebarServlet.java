@@ -16,6 +16,7 @@ public class SidebarServlet extends HttpServlet {
   protected void service(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     // GET, POST 요청 모두에 대응할 수 있도록 service()를 오버라이딩 한다.
+
     resp.setContentType("text/html;charset=UTF-8");
     PrintWriter out = resp.getWriter();
 
@@ -32,7 +33,6 @@ public class SidebarServlet extends HttpServlet {
     out.println("  <li>내용3</li>");
     out.println("</ul>");
     out.println("</div>  ");
-
   }
 }
 

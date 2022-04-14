@@ -45,16 +45,12 @@ public class BoardListServlet extends HttpServlet {
     out.println("<div class=\"container\">");
 
     out.println("<div id=\"header\">");
-
     RequestDispatcher 요청배달자 = req.getRequestDispatcher("/header");
     요청배달자.include(req, resp);
-
     out.println("</div>");
 
     out.println("<div id=\"sidebar\">");
-
     req.getRequestDispatcher("/sidebar").include(req, resp);
-
     out.println("</div>");
 
     out.println("<div id=\"content\">");
@@ -88,9 +84,7 @@ public class BoardListServlet extends HttpServlet {
     out.println("</div>");
 
     out.println("<div id=\"footer\">");
-
     req.getRequestDispatcher("/footer").include(req, resp);
-
     out.println("</div>");
 
     out.println("</div>");
