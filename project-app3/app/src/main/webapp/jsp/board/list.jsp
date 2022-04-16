@@ -42,8 +42,6 @@ int pageNo = 1;
 int pageSize = 5;
 int totalPageSize = 0;
 
-
-
 try { // pageSize 파라미터 값이 있다면 기본 값을 변경한다.
   pageSize = Integer.parseInt(request.getParameter("pageSize"));
   if (pageSize < 5 || pageSize > 100) {
