@@ -2,8 +2,6 @@ package com.eomcs.mylist.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,16 +34,18 @@ public class BookController {
 
   @RequestMapping("/book/add")
   public Object add(Book book, MultipartFile file) {
-    try {
-      book.setPhoto(saveFile(file));
-      return bookService.add(book);
-
-    } catch (Exception e) {
-      StringWriter out = new StringWriter();
-      e.printStackTrace(new PrintWriter(out));
-      log.error(out.toString());
-      return "error!";
-    }
+    System.out.println(file);
+    return 1;
+    //    try {
+    //      book.setPhoto(saveFile(file));
+    //      return bookService.add(book);
+    //
+    //    } catch (Exception e) {
+    //      StringWriter out = new StringWriter();
+    //      e.printStackTrace(new PrintWriter(out));
+    //      log.error(out.toString());
+    //      return "error!";
+    //    }
   }
 
 
